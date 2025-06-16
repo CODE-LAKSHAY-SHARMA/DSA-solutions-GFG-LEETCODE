@@ -33,3 +33,33 @@ else:
             start=mid +1
         else:
            end=mid-1
+
+
+
+
+# Find the Kth rotation ( geeks for geeks) https://www.geeksforgeeks.org/problems/rotation4723/1
+
+class Solution:
+    def findKRotation(self, arr):
+        start=0
+        end=len(arr)-1
+        N=len(arr)
+        
+        while start<=end:
+            
+            # edge case 
+            if arr[start]<arr[end]:
+                return start
+            mid=(start+end)//2
+            
+            next=(mid+1)%N
+            prev=(mid-1+N)%N
+            
+            if arr[mid]<=arr[next] and arr[mid]<arr[prev]:
+                return mid
+            if arr[start]<=arr[mid]:
+                start= mid+1
+            else:
+                end= mid-1
+        return 0
+           
