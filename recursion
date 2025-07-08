@@ -1,0 +1,17 @@
+leetcode 78 SUBSET PROBLEM
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        
+        def func(subset, index):
+            if index >= len(nums):
+                result.append(subset.copy())
+                return
+            subset.append(nums[index])
+            func(subset, index + 1)
+            subset.pop()
+            func(subset, index + 1)
+        
+        func([], 0)
+        return result
